@@ -1,4 +1,5 @@
 const commentService = require('../services/comment.service');
+const { io } = require('../../index');
 
 exports.createComment = async (req, res) => {
     try {
@@ -6,7 +7,7 @@ exports.createComment = async (req, res) => {
             req.body,
             req.user.id
         );
-
+        io.to(comment.postId.toString()).emit('newComment', comment);
         res.json(comment);
     } catch (err) {
         res.status(400).json({ message: err.message });
