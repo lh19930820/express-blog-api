@@ -11,6 +11,7 @@ app.use(express.json());
 //   res.json({ message: 'API running 🚀' });
 // });
 const authRoutes = require("./src/routes/auth.route");
+const postRoutes = require("./src/routes/post.route");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
